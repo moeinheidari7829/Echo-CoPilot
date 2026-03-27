@@ -22,10 +22,9 @@ Self-contrast provides error correction through 3-perspective voting.
 ## Quick Start
 
 ```bash
-# Install dependencies (using uv)
-uv pip install -r requirements.txt
-# Or with pip
-pip install -r requirements.txt
+# Install dependencies
+uv sync
+# Or with pip: pip install -r requirements.txt
 
 # Setup API key
 cp .env.example .env
