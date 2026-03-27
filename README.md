@@ -30,6 +30,11 @@ uv sync
 cp .env.example .env
 # Edit .env with your API key
 
+# Download MIMICEchoQA dataset (requires PhysioNet credentials)
+# The dataset is not included in this repo due to privacy/licensing
+# Download from: https://physionet.org/
+# Place in: mimic-iv-echo-ext-mimicechoqa-a-benchmark-dataset-for-echocardiogram-based-visual-question-answering-1.0.0/
+
 # Run evaluation
 uv run python experiment/test_llm_with_tools.py --num-examples 10
 ```
