@@ -32,7 +32,6 @@ cp .env.example .env
 
 # Download MIMICEchoQA dataset (requires PhysioNet credentials)
 # The dataset is not included in this repo due to privacy/licensing
-# Download from: https://physionet.org/
 # Place in: mimic-iv-echo-ext-mimicechoqa-a-benchmark-dataset-for-echocardiogram-based-visual-question-answering-1.0.0/
 
 # Run evaluation
