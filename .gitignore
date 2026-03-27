@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+
+# Environment - NEVER commit API keys!
+.env
+.env.local
+.env.production
+
+# Logs
+logs/*.json
+logs/archive/
+!logs/.gitkeep
+
+# Experiments (archived)
+experiment/archive/
+experiment/*.zip
+
+# Results - EXCLUDE ALL RESULTS
+experiment/FINAL_RESULTS/
+experiment/archive/
+logs/archive/
+
+# Datasets
+mimic-iv-echo-ext-*/
+data_pmc_vqa/echo_videos/*.mp4
+*.mp4
+*.avi
+
+# Models and weights
+checkpoints/
+model_weights/
+tool_repos/*/checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# Vector databases
+*_faiss/
+RAG_VectorDB/
+
+# Temporary
+temp/
+*.tmp
+*.cache
+.DS_Store
+
+# Output
+outputs/
+generated_videos/
+synthetic_videos/
+evaluation_results/
+results_new/
+*.jsonl
+.env
+checkpoints/
+tool_repos/
+mimic-iv-echo-ext*/
+logs/
+*.jsonl
+result*.json*

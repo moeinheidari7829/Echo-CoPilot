@@ -1,0 +1,13 @@
+{
+  "model_name": "PanEcho",
+  "model_type": "multi_task_classification",
+  "input_shape": [
+    3,
+    16,
+    224,
+    224
+  ],
+  "output_tasks": 39,
+  "model_path": "checkpoints/panecho_weights.pt",
+  "device": "cuda"
+}

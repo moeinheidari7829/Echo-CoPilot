@@ -1,0 +1,30 @@
+{
+  "model_name": "EchoFlow",
+  "model_type": "generation",
+  "input_shape": [
+    3,
+    224,
+    224
+  ],
+  "output_shape": [
+    3,
+    16,
+    224,
+    224
+  ],
+  "model_path": "checkpoints/echoflow_generator.pt",
+  "device": "cuda",
+  "views": [
+    "A4C",
+    "PLAX",
+    "PSAX"
+  ],
+  "default_ejection_fractions": [
+    0.35,
+    0.55,
+    0.7
+  ],
+  "default_num_frames": 16,
+  "default_timestep": 0.5,
+  "enabled": true
+}
