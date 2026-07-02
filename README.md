@@ -1,70 +1,138 @@
-# EchoPilot Agent
+<div align="center">
 
-An echocardiography ReAct agent focusing on EchoPilot’s specialised tools.
+# Echo-CoPilot 🫀
+### A Multiple-Perspective Agentic Framework for Reliable Echocardiography Interpretation
 
-## Features
+<p>
+  <a href="https://arxiv.org/abs/2512.09944"><img src="https://img.shields.io/badge/arXiv-2512.09944-b31b1b.svg?style=flat-square" alt="arXiv"></a>
+  <a href="https://conferences.miccai.org/2026/"><img src="https://img.shields.io/badge/MICCAI-2026-4b6cb7.svg?style=flat-square" alt="MICCAI 2026"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="License"></a>
+  <img src="https://img.shields.io/badge/Python-3.10+-3776ab.svg?style=flat-square" alt="Python">
+  <a href="https://github.com/moeinheidari7829/Echo-CoPilot/stargazers"><img src="https://img.shields.io/github/stars/moeinheidari7829/Echo-CoPilot?style=flat-square&color=ffd33d" alt="Stars"></a>
+</p>
 
-- **Self-Contrast Mechanism**: 3-perspective voting for error correction
-- **Medical Knowledge Integration**: Knowledge graph + RAG for clinical guidelines
-- **Multi-tool Analysis**: Disease prediction, measurements, segmentation
-- **Comprehensive Evaluation**: Tested on MIMICEchoQA benchmark
+**Moein Heidari**<sup>1</sup> · Ali Mehrabian<sup>1</sup> · Mohammad Amin Roohi<sup>1</sup> · Wenjin Chen<sup>2</sup> · David J. Foran<sup>2</sup> · Jasmine Grewal<sup>1</sup> · Ilker Hacihaliloglu<sup>1</sup>
 
-## Results (MIMICEchoQA Benchmark - 622 examples)
+<sup>1</sup> The University of British Columbia &nbsp;·&nbsp; <sup>2</sup> Rutgers Cancer Institute
 
-| System | Accuracy |
-|--------|----------|
-| LLM + Tools | **54.0%** |
-| Agent + Self-Contrast | **52.3%** |
-| Baseline LLM | 48.3% |
+<a href="https://arxiv.org/abs/2512.09944">📄 Paper</a> &nbsp;|&nbsp; <a href="#-quick-start">⚡ Quick Start</a> &nbsp;|&nbsp; <a href="#-citation">📝 Citation</a>
 
-Self-contrast provides error correction through 3-perspective voting.
+</div>
 
-## Quick Start
+---
+
+> 📢 **News**
+> - **[2026-06]** Echo-CoPilot is accepted to **MICCAI 2026** (Strasbourg, France)! 🎉
+> - **[2026-06]** Code and evaluation framework are publicly released.
+
+<div align="center">
+  <img src="assets/echo_copilot_overview.png" width="95%" alt="Echo-CoPilot overview">
+  <br>
+  <em>Overview of Echo-CoPilot. Three perspective ReAct agents reason over the exam and are reconciled by a self-contrast module, with EchoKG providing guideline-grounded measurement selection and thresholds.</em>
+</div>
+
+---
+
+## 🩺 TL;DR
+
+Echocardiography interpretation requires fusing multi-view video, quantitative measurements, and guideline-grounded reasoning — yet foundation-model pipelines act as black boxes and become unreliable near clinical cutoffs. **Echo-CoPilot** is an end-to-end **agentic** framework that runs three complementary reasoning perspectives, grounds them in a clinical **knowledge graph (EchoKG)**, and reconciles them with a **self-contrast** mechanism to deliver accurate *and* auditable interpretation.
+
+## ✨ Highlights
+
+- 🧭 **Multi-perspective reasoning** — three independent ReAct agents (structural, pathological, quantitative) analyze the same study and cross-validate each other.
+- 📚 **EchoKG knowledge graph** — encodes ASE/EACVI guidelines as `requires`/`avoid` edges and clinical thresholds, so the agent selects the *right* measurements for each question.
+- 🔍 **Self-contrast mechanism** — a contrast LLM builds a discrepancy checklist and resolves borderline conflicts instead of naive majority voting.
+- 📈 **State of the art on MIMICEchoQA** — with higher stability and fewer answer flips across repeated runs.
+- 🧩 **Modular tools** — EchoPrime, PanEcho, and MedSAM2 are wrapped as callable modules with a shared deterministic cache.
+
+## 🛠️ Installation
 
 ```bash
-# Install dependencies
+git clone https://github.com/moeinheidari7829/Echo-CoPilot.git
+cd Echo-CoPilot
+
+# with uv (recommended)
 uv sync
-# Or with pip: pip install -r requirements.txt
+# or with pip
+pip install -r requirements.txt
 
-# Setup API key
+# configure API access
 cp .env.example .env
-# Edit .env with your API key
+# then edit .env (see Configuration below)
 
-# Download MIMICEchoQA dataset (requires PhysioNet credentials)
-# The dataset is not included in this repo due to privacy/licensing
-# Place in: mimic-iv-echo-ext-mimicechoqa-a-benchmark-dataset-for-echocardiogram-based-visual-question-answering-1.0.0/
-
-# Run evaluation
-uv run python experiment/test_llm_with_tools.py --num-examples 10
+# download tool model weights
+python download_models.py
 ```
 
-## Tools
+## 📁 Dataset
 
-- **Disease Prediction**: PanEcho (40 cardiac tasks)
-- **Measurement Prediction**: EchoPrime measurements
-- **View Classification**: Echocardiogram view identification
-- **Knowledge Graph**: Medical measurement guidance
-- **RAG**: Clinical guideline retrieval
-- **Segmentation**: MedSAM2 cardiac structures
-- **Report Generation**: Structured clinical reports
+Echo-CoPilot is evaluated on **MIMICEchoQA**, which requires PhysioNet credentials and is **not** redistributed here. After obtaining access, place it at:
 
-## Evaluation
+```
+mimic-iv-echo-ext-mimicechoqa-.../
+```
 
-Run comparison of all system configurations:
+## ⚡ Quick Start
 
 ```bash
+# run on a few examples
+uv run python experiment/test_llm_with_tools.py --num-examples 10
+
+# full benchmark across all four configurations
 ./experiment/run_full_accuracy_comparison.sh 622
 ```
 
-This tests 4 modes: Baseline LLM, LLM+Tools, Agent, Agent+Self-Contrast.
+Prefer an interactive demo? Launch the app:
 
-## Configuration
+```bash
+streamlit run streamlit_app.py
+```
+
+## ⚙️ Configuration
 
 Set in `.env`:
-- `OPENAI_API_KEY`: Your API key
-- `OPENAI_MODEL`: Model to use (default: gpt-4o-mini)
-- `MEASUREMENT_TOOL`: echoprime/echonet/both
-- `USE_SELF_CONTRAST`: Enable 3-perspective voting
 
+| Variable | Description |
+| :--- | :--- |
+| `OPENAI_API_KEY` | API key for the reasoning LLM |
+| `OPENAI_MODEL` | LLM used by the agents (paper results use `gpt-oss-120b`) |
+| `MEASUREMENT_TOOL` | `echoprime` / `echonet` / `both` |
+| `USE_SELF_CONTRAST` | Enable the 3-perspective self-contrast mechanism |
 
+## 🗂️ Project Structure
 
+```
+Echo-CoPilot/
+├── agents/          # ReAct perspective agents (structural, pathological, quantitative)
+├── tools/           # Echo tool wrappers (EchoPrime, PanEcho, MedSAM2, EchoKG, RAG)
+├── models/          # Model loading utilities
+├── configs/         # Configuration files
+├── experiment/      # Evaluation scripts
+├── rag_index/       # FAISS guideline indices
+├── utils/           # Helpers
+├── assets/          # Figures
+├── streamlit_app.py # Interactive demo
+├── main.py          # Entry point
+└── download_models.py
+```
+
+## 📝 Citation
+
+If you find this work useful, please consider citing:
+
+```bibtex
+@inproceedings{heidari2026echocopilot,
+  title     = {Echo-CoPilot: A Multiple-Perspective Agentic Framework for Reliable Echocardiography Interpretation},
+  author    = {Heidari, Moein and Mehrabian, Ali and Roohi, Mohammad Amin and Chen, Wenjin and Foran, David J. and Grewal, Jasmine and Hacihaliloglu, Ilker},
+  booktitle = {Medical Image Computing and Computer Assisted Intervention (MICCAI)},
+  year      = {2026}
+}
+```
+
+## 🙏 Acknowledgements
+
+We thank the authors of [EchoPrime](https://github.com/echonet), [PanEcho](https://github.com/CarDS-Yale/PanEcho), and [MedSAM2](https://github.com/bowang-lab/MedSAM2) for their open-source tools, and the creators of the MIMICEchoQA benchmark. This work was supported by CFI-JELF, Mitacs, and NSERC.
+
+## 📄 License
+
+Released under the MIT License. See [LICENSE](LICENSE) for details.
