@@ -26,7 +26,7 @@
 > - **[2026-06]** Code and evaluation framework are publicly released.
 
 <div align="center">
-  <img src="assets/echo_copilot_overview.png" width="95%" alt="Echo-CoPilot overview">
+  <img src="assets/Echo-CoPilot.jpg" width="95%" alt="Echo-CoPilot overview">
   <br>
   <em>Overview of Echo-CoPilot. Three perspective ReAct agents reason over the exam and are reconciled by a self-contrast module, with EchoKG providing guideline-grounded measurement selection and thresholds.</em>
 </div>
