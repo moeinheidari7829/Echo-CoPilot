@@ -5,7 +5,6 @@
 
 <p>
   <a href="https://arxiv.org/abs/2512.09944"><img src="https://img.shields.io/badge/arXiv-2512.09944-b31b1b.svg?style=flat-square" alt="arXiv"></a>
-  <a href="https://conferences.miccai.org/2026/"><img src="https://img.shields.io/badge/MICCAI-2026-4b6cb7.svg?style=flat-square" alt="MICCAI 2026"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="License"></a>
   <img src="https://img.shields.io/badge/Python-3.10+-3776ab.svg?style=flat-square" alt="Python">
   <a href="https://github.com/moeinheidari7829/Echo-CoPilot/stargazers"><img src="https://img.shields.io/github/stars/moeinheidari7829/Echo-CoPilot?style=flat-square&color=ffd33d" alt="Stars"></a>
@@ -22,7 +21,6 @@
 ---
 
 > 📢 **News**
-> - **[2026-06]** Echo-CoPilot is accepted to **MICCAI 2026** (Strasbourg, France)! 🎉
 > - **[2026-06]** Code and evaluation framework are publicly released.
 
 <div align="center">
@@ -124,7 +122,6 @@ If you find this work useful, please consider citing:
 @inproceedings{heidari2026echocopilot,
   title     = {Echo-CoPilot: A Multiple-Perspective Agentic Framework for Reliable Echocardiography Interpretation},
   author    = {Heidari, Moein and Mehrabian, Ali and Roohi, Mohammad Amin and Chen, Wenjin and Foran, David J. and Grewal, Jasmine and Hacihaliloglu, Ilker},
-  booktitle = {Medical Image Computing and Computer Assisted Intervention (MICCAI)},
   year      = {2026}
 }
 ```
