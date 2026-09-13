@@ -10,9 +10,10 @@
   <a href="https://github.com/moeinheidari7829/Echo-CoPilot/stargazers"><img src="https://img.shields.io/github/stars/moeinheidari7829/Echo-CoPilot?style=flat-square&color=ffd33d" alt="Stars"></a>
 </p>
 
-**Moein Heidari**<sup>1</sup> · Ali Mehrabian<sup>1</sup> · Mohammad Amin Roohi<sup>1</sup> · Wenjin Chen<sup>2</sup> · David J. Foran<sup>2</sup> · Jasmine Grewal<sup>1</sup> · Ilker Hacihaliloglu<sup>1</sup>
+**Moein Heidari**<sup>1</sup> · Ali Mehrabian<sup>1</sup> · Mohammad Amin Roohi<sup>1</sup> · River Jiang<sup>1</sup> · Wenjin Chen<sup>2</sup> · David J. Foran<sup>2</sup> · Jasmine Grewal<sup>1</sup> · Ilker Hacihaliloglu<sup>1</sup>
 
-<sup>1</sup> The University of British Columbia &nbsp;·&nbsp; <sup>2</sup> Rutgers Cancer Institute
+<sup>1</sup> The University of British Columbia, Vancouver, BC, Canada  
+<sup>2</sup> Rutgers Cancer Institute, New Brunswick, NJ, USA
 
 <a href="https://arxiv.org/abs/2512.09944">📄 Paper</a> &nbsp;|&nbsp; <a href="#-quick-start">⚡ Quick Start</a> &nbsp;|&nbsp; <a href="#-citation">📝 Citation</a>
 
@@ -21,7 +22,10 @@
 ---
 
 > 📢 **News**
-> - **[2026-06]** Code and evaluation framework are publicly released.
+>
+> 🎉 **[2026.08]** Echo CoPilot was accepted to the **2nd Agentic AI for Medicine Workshop at MICCAI 2026**.
+>
+> 🚀 **[2026.06]** The code and evaluation framework were publicly released.
 
 <div align="center">
   <img src="assets/Echo-CoPilot.jpg" width="95%" alt="Echo-CoPilot overview">
@@ -121,7 +125,8 @@ If you find this work useful, please consider citing:
 ```bibtex
 @inproceedings{heidari2026echocopilot,
   title     = {Echo-CoPilot: A Multiple-Perspective Agentic Framework for Reliable Echocardiography Interpretation},
-  author    = {Heidari, Moein and Mehrabian, Ali and Roohi, Mohammad Amin and Chen, Wenjin and Foran, David J. and Grewal, Jasmine and Hacihaliloglu, Ilker},
+  author    = {Heidari, Moein and Mehrabian, Ali and Roohi, Mohammad Amin and Jiang, River and Chen, Wenjin and Foran, David J. and Grewal, Jasmine and Hacihaliloglu, Ilker},
+  booktitle = {2nd Agentic AI for Medicine Workshop at MICCAI},
   year      = {2026}
 }
 ```
